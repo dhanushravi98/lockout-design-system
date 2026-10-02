@@ -1,0 +1,11 @@
+{
+  "name": "lockout-design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lockout design system (POC 1, web only): tokens, component specs, reference sheet.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-tokens.mjs",
+    "check": "node scripts/check-contrast.mjs"
+  }
+}

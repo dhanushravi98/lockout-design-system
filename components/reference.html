@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lockout design system: component reference</title>
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600&display=swap">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--lo-bg-page); color: var(--lo-text-primary); font-family: var(--lo-font-family-sans); font-size: var(--lo-text-body-size); line-height: var(--lo-text-body-line-height); }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: var(--lo-space-2xl) var(--lo-space-xl) var(--lo-space-4xl); }
+  .page-title { font-size: var(--lo-text-heading-lg-size); line-height: var(--lo-text-heading-lg-line-height); font-weight: var(--lo-text-heading-lg-weight); margin: 0 0 var(--lo-space-sm); }
+  .intro { color: var(--lo-text-secondary); max-width: 70ch; margin: 0 0 var(--lo-space-xl); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: var(--lo-space-xl); align-items: start; }
+  .panel { background: var(--lo-bg-page); color: var(--lo-text-primary); border: 1px solid var(--lo-border-default); border-radius: var(--lo-radius-lg); padding: var(--lo-space-xl); min-width: 0; }
+  .panel > h2 { font-size: var(--lo-text-heading-sm-size); line-height: var(--lo-text-heading-sm-line-height); font-weight: var(--lo-text-heading-sm-weight); margin: 0 0 var(--lo-space-lg); }
+  .surface { background: var(--lo-bg-surface); border: 1px solid var(--lo-border-default); border-radius: var(--lo-radius-lg); padding: var(--lo-space-xl); }
+  .sec + .sec { margin-top: var(--lo-space-xl); padding-top: var(--lo-space-xl); border-top: 1px solid var(--lo-border-default); }
+  .sec > h3 { font-size: var(--lo-text-caption-size); line-height: var(--lo-text-caption-line-height); font-weight: var(--lo-font-weight-medium); color: var(--lo-text-secondary); margin: 0 0 var(--lo-space-md); }
+  .row { display: flex; flex-wrap: wrap; gap: var(--lo-space-sm); align-items: center; }
+  .row + .row { margin-top: var(--lo-space-sm); }
+  .stack { display: grid; gap: var(--lo-space-sm); }
+
+  .t-xl { font-size: var(--lo-text-heading-xl-size); line-height: var(--lo-text-heading-xl-line-height); font-weight: var(--lo-text-heading-xl-weight); }
+  .t-lg { font-size: var(--lo-text-heading-lg-size); line-height: var(--lo-text-heading-lg-line-height); font-weight: var(--lo-text-heading-lg-weight); }
+  .t-md { font-size: var(--lo-text-heading-md-size); line-height: var(--lo-text-heading-md-line-height); font-weight: var(--lo-text-heading-md-weight); }
+  .t-sm { font-size: var(--lo-text-heading-sm-size); line-height: var(--lo-text-heading-sm-line-height); font-weight: var(--lo-text-heading-sm-weight); }
+  .t-body-lg { font-size: var(--lo-text-body-lg-size); line-height: var(--lo-text-body-lg-line-height); font-weight: var(--lo-text-body-lg-weight); }
+  .t-body { font-size: var(--lo-text-body-size); line-height: var(--lo-text-body-line-height); font-weight: var(--lo-text-body-weight); }
+  .t-label { font-size: var(--lo-text-label-size); line-height: var(--lo-text-label-line-height); font-weight: var(--lo-text-label-weight); }
+  .t-caption { font-size: var(--lo-text-caption-size); line-height: var(--lo-text-caption-line-height); font-weight: var(--lo-text-caption-weight); color: var(--lo-text-secondary); }
+  .t-xl, .t-lg, .t-md, .t-sm, .t-body-lg, .t-body, .t-label, .t-caption { margin: 0; }
+
+  .ring, .btn:focus-visible, .input:focus-visible, .nav a:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--lo-bg-surface), 0 0 0 4px var(--lo-action-focus-ring); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--lo-space-sm); height: var(--lo-size-control-md); padding: 0 var(--lo-space-lg); border: 1px solid transparent; border-radius: var(--lo-radius-md); font-family: inherit; font-size: var(--lo-text-label-size); line-height: var(--lo-text-label-line-height); font-weight: var(--lo-text-label-weight); cursor: pointer; transition: background-color var(--lo-motion-duration-fast) var(--lo-motion-easing-standard), border-color var(--lo-motion-duration-fast) var(--lo-motion-easing-standard), color var(--lo-motion-duration-fast) var(--lo-motion-easing-standard); }
+  .btn i { font-size: 16px; }
+  .btn.sm { height: var(--lo-size-control-sm); padding: 0 var(--lo-space-md); }
+  .btn.lg { height: var(--lo-size-control-lg); padding: 0 var(--lo-space-xl); }
+  .btn.lg i { font-size: 20px; }
+  .btn-primary { background: var(--lo-action-primary-bg); color: var(--lo-action-primary-text); }
+  .btn-primary:hover, .btn-primary.is-hover { background: var(--lo-action-primary-bg-hover); }
+  .btn-primary:active, .btn-primary.is-pressed { background: var(--lo-action-primary-bg-pressed); }
+  .btn-secondary { background: var(--lo-bg-surface); border-color: var(--lo-border-strong); color: var(--lo-text-primary); }
+  .btn-secondary:hover, .btn-secondary.is-hover { background: var(--lo-bg-subtle); }
+  .btn-secondary:active, .btn-secondary.is-pressed { background: var(--lo-bg-subtle); border-color: var(--lo-border-input); }
+  .btn-ghost { background: transparent; color: var(--lo-action-link); }
+  .btn-ghost:hover, .btn-ghost.is-hover, .btn-ghost:active, .btn-ghost.is-pressed { background: var(--lo-bg-subtle); }
+  .btn-danger { background: var(--lo-action-danger-bg); color: var(--lo-action-danger-text); }
+  .btn-danger:hover, .btn-danger.is-hover { background: var(--lo-action-danger-bg-hover); }
+  .btn-danger:active, .btn-danger.is-pressed { background: var(--lo-action-danger-bg-pressed); }
+  .btn:disabled { background: var(--lo-disabled-bg); border-color: transparent; color: var(--lo-disabled-text); cursor: not-allowed; }
+
+  .field { display: grid; gap: var(--lo-space-xs); }
+  .field + .field { margin-top: var(--lo-space-md); }
+  .field > .lbl { font-size: var(--lo-text-caption-size); line-height: var(--lo-text-caption-line-height); font-weight: var(--lo-font-weight-medium); color: var(--lo-text-secondary); }
+  .input { width: 100%; height: var(--lo-size-control-md); padding: 0 var(--lo-space-md); border: 1px solid var(--lo-border-input); border-radius: var(--lo-radius-md); background: var(--lo-bg-surface); color: var(--lo-text-primary); font-family: inherit; font-size: var(--lo-text-body-size); }
+  .input::placeholder { color: var(--lo-text-secondary); opacity: 1; }
+  .input:focus-visible, .input.is-focus { border-color: var(--lo-action-focus-ring); }
+  .input.is-focus { box-shadow: 0 0 0 2px var(--lo-bg-surface), 0 0 0 4px var(--lo-action-focus-ring); outline: none; }
+  .input[aria-invalid="true"] { border-color: var(--lo-border-error); }
+  .input:disabled { background: var(--lo-disabled-bg); border-color: var(--lo-border-default); color: var(--lo-disabled-text); cursor: not-allowed; }
+  .msg { display: flex; align-items: center; gap: var(--lo-space-xs); font-size: var(--lo-text-caption-size); line-height: var(--lo-text-caption-line-height); color: var(--lo-border-error); }
+  .msg i { font-size: 16px; }
+
+  [data-status="critical"] { --s-tint-bg: var(--lo-status-critical-tint-bg); --s-tint-border: var(--lo-status-critical-tint-border); --s-tint-text: var(--lo-status-critical-tint-text); --s-solid-bg: var(--lo-status-critical-solid-bg); --s-solid-text: var(--lo-status-critical-solid-text); }
+  [data-status="warning"] { --s-tint-bg: var(--lo-status-warning-tint-bg); --s-tint-border: var(--lo-status-warning-tint-border); --s-tint-text: var(--lo-status-warning-tint-text); --s-solid-bg: var(--lo-status-warning-solid-bg); --s-solid-text: var(--lo-status-warning-solid-text); }
+  [data-status="normal"] { --s-tint-bg: var(--lo-status-normal-tint-bg); --s-tint-border: var(--lo-status-normal-tint-border); --s-tint-text: var(--lo-status-normal-tint-text); --s-solid-bg: var(--lo-status-normal-solid-bg); --s-solid-text: var(--lo-status-normal-solid-text); }
+  [data-status="offline"] { --s-tint-bg: var(--lo-status-offline-tint-bg); --s-tint-border: var(--lo-status-offline-tint-border); --s-tint-text: var(--lo-status-offline-tint-text); --s-solid-bg: var(--lo-status-offline-solid-bg); --s-solid-text: var(--lo-status-offline-solid-text); }
+  [data-status="info"] { --s-tint-bg: var(--lo-status-info-tint-bg); --s-tint-border: var(--lo-status-info-tint-border); --s-tint-text: var(--lo-status-info-tint-text); --s-solid-bg: var(--lo-status-info-solid-bg); --s-solid-text: var(--lo-status-info-solid-text); }
+
+  .badge { display: inline-flex; align-items: center; gap: var(--lo-space-xs); height: 22px; padding: 0 var(--lo-space-sm); border: 1px solid; border-radius: var(--lo-radius-sm); font-size: var(--lo-font-size-xs); line-height: 1; font-weight: var(--lo-font-weight-medium); white-space: nowrap; }
+  .badge i { font-size: 14px; }
+  .badge.tint { background: var(--s-tint-bg); border-color: var(--s-tint-border); color: var(--s-tint-text); }
+  .badge.solid { background: var(--s-solid-bg); border-color: var(--s-solid-bg); color: var(--s-solid-text); }
+
+  .alert { display: flex; align-items: flex-start; gap: var(--lo-space-md); padding: var(--lo-space-md); border: 1px solid var(--s-tint-border); border-radius: var(--lo-radius-md); background: var(--s-tint-bg); color: var(--s-tint-text); }
+  .alert > i { font-size: 20px; line-height: 1; flex: none; margin-top: 0; }
+  .alert .body { flex: 1; min-width: 0; }
+  .alert .title { font-weight: var(--lo-text-label-weight); margin: 0; }
+  .alert p { margin: 0; }
+  .alert .act { color: inherit; font-weight: var(--lo-text-label-weight); text-decoration: underline; }
+  .alert .x { flex: none; width: 24px; height: 24px; display: grid; place-items: center; border: 0; background: transparent; color: inherit; border-radius: var(--lo-radius-sm); cursor: pointer; }
+  .alert .x:hover { background: var(--lo-bg-subtle); }
+
+  .tbl-wrap { border: 1px solid var(--lo-border-default); border-radius: var(--lo-radius-md); background: var(--lo-bg-surface); overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--lo-bg-subtle); color: var(--lo-text-secondary); font-size: var(--lo-text-caption-size); line-height: var(--lo-text-caption-line-height); font-weight: var(--lo-font-weight-medium); text-align: left; padding: var(--lo-space-sm) var(--lo-space-md); }
+  th .sort { display: inline-flex; align-items: center; gap: var(--lo-space-xs); padding: 0; border: 0; background: transparent; font: inherit; color: var(--lo-text-primary); cursor: pointer; }
+  th .sort i { font-size: 16px; }
+  td { padding: var(--lo-space-sm) var(--lo-space-md); border-top: 1px solid var(--lo-border-default); }
+  tr.is-hover td { background: var(--lo-bg-subtle); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .nav { display: flex; flex-direction: column; gap: var(--lo-space-xs); width: 100%; max-width: 240px; padding: var(--lo-space-sm); background: var(--lo-bg-surface); border: 1px solid var(--lo-border-default); border-radius: var(--lo-radius-md); }
+  .nav a { display: flex; align-items: center; gap: var(--lo-space-md); height: var(--lo-size-control-lg); padding: 0 var(--lo-space-md); border-radius: var(--lo-radius-md); color: var(--lo-text-secondary); text-decoration: none; transition: background-color var(--lo-motion-duration-fast) var(--lo-motion-easing-standard), color var(--lo-motion-duration-fast) var(--lo-motion-easing-standard); }
+  .nav a i { font-size: 20px; }
+  .nav a:hover, .nav a.is-hover { background: var(--lo-bg-subtle); color: var(--lo-text-primary); }
+  .nav a[aria-current="page"] { background: var(--lo-nav-active-bg); color: var(--lo-nav-active-text); font-weight: var(--lo-font-weight-medium); }
+  .nav small { margin-left: auto; font-size: var(--lo-text-caption-size); color: var(--lo-text-secondary); }
+
+  .scales { margin-top: var(--lo-space-3xl); }
+  .scales h2 { font-size: var(--lo-text-heading-md-size); line-height: var(--lo-text-heading-md-line-height); font-weight: var(--lo-text-heading-md-weight); margin: 0 0 var(--lo-space-lg); }
+  .ramp { margin-bottom: var(--lo-space-xl); }
+  .ramp h3 { font-size: var(--lo-text-label-size); font-weight: var(--lo-text-label-weight); margin: 0 0 var(--lo-space-sm); }
+  .sw-row { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: var(--lo-space-xs); }
+  .sw { height: 64px; border-radius: var(--lo-radius-md); padding: var(--lo-space-sm); display: flex; flex-direction: column; justify-content: space-between; font-size: var(--lo-text-caption-size); line-height: 1.2; border: 1px solid var(--lo-border-default); }
+  .sw span { font-variant-numeric: tabular-nums; }
+  @media (max-width: 720px) { .grid { grid-template-columns: minmax(0, 1fr); } .sw-row { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="page-title">Lockout design system: component reference</h1>
+  <p class="intro">Every Tier 1 component in light and dark mode, built only from the tokens in <code>tokens/tokens.css</code>. This page is the picture; the specs in this folder are the text. Version 0.1.0, web only.</p>
+
+  <div class="grid">
+    <section class="panel" data-theme="light" aria-labelledby="h-light"><h2 id="h-light">Light mode</h2><div class="surface" id="mount-light"></div></section>
+    <section class="panel" data-theme="dark" aria-labelledby="h-dark"><h2 id="h-dark">Dark mode</h2><div class="surface" id="mount-dark"></div></section>
+  </div>
+
+  <section class="scales" aria-labelledby="h-scales">
+    <h2 id="h-scales">Color scales</h2>
+    <div id="ramps"></div>
+  </section>
+</div>
+
+<template id="components">
+  <div class="sec">
+    <h3>Type</h3>
+    <div class="stack">
+      <p class="t-xl">Riverside High</p>
+      <p class="t-lg">Heading large, 24 over 32</p>
+      <p class="t-md">Heading medium, 20 over 28</p>
+      <p class="t-sm">Heading small, 16 over 24</p>
+      <p class="t-body-lg">Body large, 16 over 24. Use for longer reading.</p>
+      <p class="t-body">Body, 14 over 20. The default for dense screens.</p>
+      <p class="t-label">Label, 14 over 20, medium</p>
+      <p class="t-caption">Caption, 12 over 16</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>Buttons</h3>
+    <div class="row">
+      <button class="btn btn-primary" type="button">Acknowledge</button>
+      <button class="btn btn-secondary" type="button">Add school</button>
+      <button class="btn btn-ghost" type="button">View details</button>
+      <button class="btn btn-danger" type="button">Delete school</button>
+      <button class="btn btn-secondary" type="button" disabled>Disabled</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary is-hover" type="button">Primary hover</button>
+      <button class="btn btn-primary is-pressed" type="button">Primary pressed</button>
+      <button class="btn btn-primary ring" type="button">Primary focus</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-secondary sm" type="button">Small</button>
+      <button class="btn btn-secondary" type="button">Medium</button>
+      <button class="btn btn-secondary lg" type="button">Large</button>
+      <button class="btn btn-secondary" type="button"><i class="ph ph-bell" aria-hidden="true"></i>With icon</button>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>Inputs</h3>
+    <div class="field"><label class="lbl" for="in-default-{{m}}">Default</label><input class="input" id="in-default-{{m}}" type="text" placeholder="Search schools"></div>
+    <div class="field"><label class="lbl" for="in-focus-{{m}}">Focus</label><input class="input is-focus" id="in-focus-{{m}}" type="text" value="Riverside"></div>
+    <div class="field"><label class="lbl" for="in-error-{{m}}">Error</label><input class="input" id="in-error-{{m}}" type="text" value="D-9" aria-invalid="true" aria-describedby="err-{{m}}"><div class="msg" id="err-{{m}}"><i class="ph ph-warning-circle" aria-hidden="true"></i>Enter a valid door ID.</div></div>
+    <div class="field"><label class="lbl" for="in-dis-{{m}}">Disabled</label><input class="input" id="in-dis-{{m}}" type="text" value="Locked by admin" disabled></div>
+  </div>
+
+  <div class="sec">
+    <h3>Badges, tint</h3>
+    <div class="row">
+      <span class="badge tint" data-status="critical"><i class="ph ph-warning-octagon" aria-hidden="true"></i>Critical</span>
+      <span class="badge tint" data-status="warning"><i class="ph ph-warning" aria-hidden="true"></i>Warning</span>
+      <span class="badge tint" data-status="normal"><i class="ph ph-check-circle" aria-hidden="true"></i>Normal</span>
+      <span class="badge tint" data-status="offline"><i class="ph ph-wifi-slash" aria-hidden="true"></i>Offline</span>
+      <span class="badge tint" data-status="info"><i class="ph ph-info" aria-hidden="true"></i>Info</span>
+    </div>
+    <h3 style="margin-top:var(--lo-space-lg)">Badges, solid</h3>
+    <div class="row">
+      <span class="badge solid" data-status="critical"><i class="ph ph-warning-octagon" aria-hidden="true"></i>Critical</span>
+      <span class="badge solid" data-status="warning"><i class="ph ph-warning" aria-hidden="true"></i>Warning</span>
+      <span class="badge solid" data-status="normal"><i class="ph ph-check-circle" aria-hidden="true"></i>Normal</span>
+      <span class="badge solid" data-status="offline"><i class="ph ph-wifi-slash" aria-hidden="true"></i>Offline</span>
+      <span class="badge solid" data-status="info"><i class="ph ph-info" aria-hidden="true"></i>Info</span>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>Alerts</h3>
+    <div class="stack">
+      <div class="alert" data-status="critical" role="alert"><i class="ph ph-warning-octagon" aria-hidden="true"></i><div class="body"><p class="title">Lockdown active at Riverside High</p><p>Doors on floors 1 and 2 are locked. <a class="act" href="#">View door status</a></p></div></div>
+      <div class="alert" data-status="warning" role="alert"><i class="ph ph-warning" aria-hidden="true"></i><div class="body"><p>Gate controller battery is low. Replace it this week.</p></div></div>
+      <div class="alert" data-status="normal" role="status"><i class="ph ph-check-circle" aria-hidden="true"></i><div class="body"><p>All doors locked.</p></div></div>
+      <div class="alert" data-status="info" role="status"><i class="ph ph-info" aria-hidden="true"></i><div class="body"><p>Firmware update available.</p></div><button class="x" type="button" aria-label="Dismiss"><i class="ph ph-x" aria-hidden="true"></i></button></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>Table</h3>
+    <div class="tbl-wrap">
+      <table aria-label="Schools and device status">
+        <thead><tr>
+          <th scope="col" aria-sort="ascending"><button class="sort" type="button">School<i class="ph ph-caret-down" aria-hidden="true"></i></button></th>
+          <th scope="col" class="num">Devices</th>
+          <th scope="col">Status</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Riverside High</td><td class="num">12</td><td><span class="badge tint" data-status="critical"><i class="ph ph-warning-octagon" aria-hidden="true"></i>Critical</span></td></tr>
+          <tr class="is-hover"><td>Oak Park Middle</td><td class="num">8</td><td><span class="badge tint" data-status="warning"><i class="ph ph-warning" aria-hidden="true"></i>Warning</span></td></tr>
+          <tr><td>Lincoln Elementary</td><td class="num">15</td><td><span class="badge tint" data-status="normal"><i class="ph ph-check-circle" aria-hidden="true"></i>Normal</span></td></tr>
+          <tr><td>Westside Academy</td><td class="num">6</td><td><span class="badge tint" data-status="offline"><i class="ph ph-wifi-slash" aria-hidden="true"></i>Offline</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>Navigation</h3>
+    <nav class="nav" aria-label="Main (example)">
+      <a href="#"><i class="ph ph-squares-four" aria-hidden="true"></i>Dashboard<small>Default</small></a>
+      <a href="#" class="is-hover"><i class="ph ph-buildings" aria-hidden="true"></i>Schools<small>Hover</small></a>
+      <a href="#" aria-current="page"><i class="ph ph-bell" aria-hidden="true"></i>Alerts<small>Current</small></a>
+    </nav>
+  </div>
+</template>
+
+<script>
+  var tpl = document.getElementById('components').innerHTML;
+  ['light', 'dark'].forEach(function (m) {
+    document.getElementById('mount-' + m).innerHTML = tpl.split('{{m}}').join(m);
+  });
+
+  var ramps = ['blue', 'neutral', 'red', 'amber', 'green'];
+  var steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  var cs = getComputedStyle(document.documentElement);
+  function readable(hex) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16 & 255, g = n >> 8 & 255, b = n & 255;
+    return (0.299 * r + 0.587 * g + 0.114 * b) > 150 ? '#121417' : '#FFFFFF';
+  }
+  var out = '';
+  ramps.forEach(function (name) {
+    out += '<div class="ramp"><h3>' + name.charAt(0).toUpperCase() + name.slice(1) + '</h3><div class="sw-row">';
+    steps.forEach(function (s) {
+      var hex = cs.getPropertyValue('--lo-color-' + name + '-' + s).trim();
+      out += '<div class="sw" style="background:' + hex + ';color:' + readable(hex) + '"><strong>' + s + '</strong><span>' + hex + '</span></div>';
+    });
+    out += '</div></div>';
+  });
+  document.getElementById('ramps').innerHTML = out;
+</script>
+</body>
+</html>
